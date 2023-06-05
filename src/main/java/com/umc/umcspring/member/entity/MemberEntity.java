@@ -31,4 +31,9 @@ public class MemberEntity {
         memberEntity.setMemberName(memberDTO.getMemberName());
         return memberEntity;
     }
+
+//    public static MemberEntity update(MemberDTO memberDTO) {
+//        // https://gom20.tistory.com/115 여기 참고해보기
+//        return memberEntity;
+//    }
 }

@@ -18,4 +18,19 @@ public class MemberService {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
         memberRepository.save(memberEntity);
     }
+
+//    public MemberEntity findOneByEmail(String memberEmail) {
+//        return memberRepository.findByMemberEmail(memberEmail);
+//    }
+
+    public MemberEntity getMemberInfo(Long id) {
+        return memberRepository.findById(id).get();
+    }
+
+//    public Long update(Long id, MemberDTO memberDTO) throws SQLException {
+//        MemberEntity memberEntity = memberRepository.findById(id)
+//                .orElseThrow(() -> new NullPointerException("해당 회원이 존재하지 않습니다."));
+//        memberEntity.update(memberDTO);
+//        return id;
+//    }
 }

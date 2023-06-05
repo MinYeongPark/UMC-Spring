@@ -52,11 +52,16 @@ public class MemberController {
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_CHECK_MEMBER_INFO, memberInfoDTO), HttpStatus.OK);
     }
 
-//    @PutMapping("/info")
-//    public String updateMemberInfo(
-//            @RequestBody MemberDTO memberDTO,
-//            @RequestHeader Long id
-//    ) throws IOException {
-//        memberService.update(id, memberDTO);
-//    }
+    // 회원 정보 수정
+    @PutMapping("/info")
+    public ResponseEntity updateMemberInfo(
+            @RequestBody MemberRegisterDTO memberRegisterDTO,
+            @RequestHeader("Id") Long id
+    ) throws IOException {
+        int result = memberService.update(id, memberRegisterDTO);
+        if (result > 0) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_UPDATE_MEMBER_INFO, null), HttpStatus.OK);
+        }
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_UPDATE_MEMBER_INFO, null), HttpStatus.OK);
+    }
 }

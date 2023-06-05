@@ -5,6 +5,9 @@ import com.umc.umcspring.member.entity.MemberEntity;
 import com.umc.umcspring.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +38,20 @@ public class MemberService {
         } else {
             return null;
         }
+    }
+
+    @Transactional
+    public Integer update(Long id, MemberRegisterDTO memberRegisterDTO) {
+        Optional<MemberEntity> oMember = memberRepository.findById(id);
+        if (!oMember.isPresent())
+            return 0;
+
+        MemberEntity memberEntity = oMember.get();
+        memberEntity.setMemberName(memberRegisterDTO.getMemberName());
+        memberEntity.setMemberEmail(memberRegisterDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberRegisterDTO.getMemberPassword());
+        memberRepository.save(memberEntity);
+        return 1;
     }
 
 //    public Long update(Long id, MemberDTO memberDTO) throws SQLException {

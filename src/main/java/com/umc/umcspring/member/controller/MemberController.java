@@ -1,6 +1,6 @@
 package com.umc.umcspring.member.controller;
 
-import com.umc.umcspring.member.dto.MemberDTO;
+import com.umc.umcspring.member.dto.MemberRegisterDTO;
 import com.umc.umcspring.member.dto.MemberInfoDTO;
 import com.umc.umcspring.member.entity.MemberEntity;
 import com.umc.umcspring.member.service.MemberService;
@@ -23,9 +23,23 @@ public class MemberController {
 
     // 회원 가입
     @PostMapping("/new")
-    public ResponseEntity save(@RequestBody MemberDTO memberDTO) {
-        memberService.save(memberDTO);
-        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_REGISTER_MEMBER, memberDTO.getId()), HttpStatus.OK);
+    public ResponseEntity save(@RequestBody MemberRegisterDTO memberRegisterDTO) {
+        memberService.save(memberRegisterDTO);
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_REGISTER_MEMBER, memberRegisterDTO.getId()), HttpStatus.OK);
+    }
+
+    // 회원 로그인
+    @PostMapping("/local")
+    public ResponseEntity login(
+            @RequestParam("Email") String email,
+            @RequestParam("Password") String password
+    ) {
+        Long memberId;
+        if ((memberId = memberService.login(email, password)) != null) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_LOGIN_MEMBER, memberId), HttpStatus.OK);
+        } else {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_LOGIN_MEMBER, null), HttpStatus.OK);
+        }
     }
 
     // 회원 정보 조회

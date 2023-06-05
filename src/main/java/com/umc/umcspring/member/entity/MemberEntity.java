@@ -1,6 +1,6 @@
 package com.umc.umcspring.member.entity;
 
-import com.umc.umcspring.member.dto.MemberDTO;
+import com.umc.umcspring.member.dto.MemberRegisterDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,11 +24,11 @@ public class MemberEntity {
     @Column
     private String memberName;
 
-    public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
+    public static MemberEntity toMemberEntity(MemberRegisterDTO memberRegisterDTO) {
         MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
-        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
-        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberEmail(memberRegisterDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberRegisterDTO.getMemberPassword());
+        memberEntity.setMemberName(memberRegisterDTO.getMemberName());
         return memberEntity;
     }
 

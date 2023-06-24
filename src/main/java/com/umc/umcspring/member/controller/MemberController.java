@@ -64,4 +64,16 @@ public class MemberController {
         }
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_UPDATE_MEMBER_INFO, null), HttpStatus.OK);
     }
+
+    // 회원 정보 삭제
+    @DeleteMapping("/del")
+    public ResponseEntity deleteMemberInfo(
+            @RequestHeader("Id") Long id
+    ) throws IOException {
+        int result = memberService.deleteMemberInfo(id);
+        if (result > 0) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_DELETE_MEMBER_INFO, null), HttpStatus.OK);
+        }
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_DELETE_MEMBER_INFO, null), HttpStatus.OK);
+    }
 }

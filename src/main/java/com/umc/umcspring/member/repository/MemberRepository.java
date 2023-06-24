@@ -8,8 +8,10 @@ import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
-    MemberEntity findByMemberEmail(String memberEmail);
-
     Optional<MemberEntity> findById(Long id);
+
     MemberEntity findOneByMemberEmailAndMemberPassword(String memberEmail, String memberPassword);
+
+    @Override
+    void delete(MemberEntity entity);
 }

@@ -14,6 +14,7 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    // 회원 가입
     public void save(MemberRegisterDTO memberRegisterDTO) {
         // repository의 save 메서드 호출 (조건 : entity객체를 넘겨줘야 함)
         // 1. dto -> entity 변환
@@ -22,14 +23,12 @@ public class MemberService {
         memberRepository.save(memberEntity);
     }
 
-//    public MemberEntity findOneByEmail(String memberEmail) {
-//        return memberRepository.findByMemberEmail(memberEmail);
-//    }
-
+    // 회원 정보 조회
     public MemberEntity getMemberInfo(Long id) {
         return memberRepository.findById(id).get();
     }
 
+    // 회원 로그인
     public Long login(String email, String password) {
         MemberEntity findMember = memberRepository.findOneByMemberEmailAndMemberPassword(email, password);
 
@@ -40,6 +39,7 @@ public class MemberService {
         }
     }
 
+    // 회원 정보 수정
     @Transactional
     public Integer update(Long id, MemberRegisterDTO memberRegisterDTO) {
         Optional<MemberEntity> oMember = memberRepository.findById(id);
@@ -51,6 +51,14 @@ public class MemberService {
         memberEntity.setMemberEmail(memberRegisterDTO.getMemberEmail());
         memberEntity.setMemberPassword(memberRegisterDTO.getMemberPassword());
         memberRepository.save(memberEntity);
+        return 1;
+    }
+
+    // 회원 정보 삭제
+    public int deleteMemberInfo(Long id) {
+        MemberEntity member = memberRepository.findById(id)
+                .orElseThrow(RuntimeException::new); // id값에 해당하는 회원이 없다면 예외처리
+        memberRepository.delete(member);
         return 1;
     }
 

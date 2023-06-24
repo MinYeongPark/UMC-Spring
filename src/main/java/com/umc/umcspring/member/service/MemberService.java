@@ -15,12 +15,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     // 회원 가입
-    public void save(MemberRegisterDTO memberRegisterDTO) {
-        // repository의 save 메서드 호출 (조건 : entity객체를 넘겨줘야 함)
-        // 1. dto -> entity 변환
-        // 2. repository의 save 메서드 호출
-        MemberEntity memberEntity = MemberEntity.toMemberEntity(memberRegisterDTO);
+    public long save(MemberRegisterDTO memberRegisterDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberName(memberRegisterDTO.getMemberName());
+        memberEntity.setMemberEmail(memberRegisterDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberRegisterDTO.getMemberPassword());
+
         memberRepository.save(memberEntity);
+        return memberEntity.getId();
     }
 
     // 회원 정보 조회

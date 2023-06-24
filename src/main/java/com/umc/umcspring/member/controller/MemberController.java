@@ -22,10 +22,10 @@ public class MemberController {
     private final MemberService memberService;
 
     // 회원 가입
-    @PostMapping("/new")
+    @PostMapping("/save")
     public ResponseEntity save(@RequestBody MemberRegisterDTO memberRegisterDTO) {
-        memberService.save(memberRegisterDTO);
-        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_REGISTER_MEMBER, memberRegisterDTO.getId()), HttpStatus.OK);
+        long responseId = memberService.save(memberRegisterDTO);
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_REGISTER_MEMBER, responseId), HttpStatus.OK);
     }
 
     // 회원 로그인

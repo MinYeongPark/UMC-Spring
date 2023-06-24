@@ -55,10 +55,12 @@ public class MemberService {
     }
 
     // 회원 정보 삭제
-    public int deleteMemberInfo(Long id) {
-        MemberEntity member = memberRepository.findById(id)
-                .orElseThrow(RuntimeException::new); // id값에 해당하는 회원이 없다면 예외처리
-        memberRepository.delete(member);
+    public Integer deleteMemberInfo(Long id) {
+        Optional<MemberEntity> member = memberRepository.findById(id); // id값에 해당하는 회원이 없다면 예외처리
+        if (member.isEmpty()) {
+            return -1;
+        }
+        memberRepository.delete(member.get());
         return 1;
     }
 

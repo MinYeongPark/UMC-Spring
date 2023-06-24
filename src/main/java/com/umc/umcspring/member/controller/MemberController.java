@@ -70,7 +70,7 @@ public class MemberController {
     public ResponseEntity deleteMemberInfo(
             @RequestHeader("Id") Long id
     ) throws IOException {
-        int result = memberService.deleteMemberInfo(id);
+        Integer result = memberService.deleteMemberInfo(id);
         if (result > 0) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_DELETE_MEMBER_INFO, null), HttpStatus.OK);
         }

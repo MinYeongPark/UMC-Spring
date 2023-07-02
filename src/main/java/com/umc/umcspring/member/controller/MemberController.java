@@ -22,7 +22,7 @@ public class MemberController {
     private final MemberService memberService;
 
     // 회원 가입
-    @PostMapping("/save")
+    @PostMapping("/new")
     public ResponseEntity save(@RequestBody MemberRegisterDTO memberRegisterDTO) {
         long responseId = memberService.save(memberRegisterDTO);
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_REGISTER_MEMBER, responseId), HttpStatus.OK);
@@ -66,7 +66,7 @@ public class MemberController {
     }
 
     // 회원 정보 삭제
-    @DeleteMapping("/del")
+    @DeleteMapping("/out")
     public ResponseEntity deleteMemberInfo(
             @RequestHeader("Id") Long id
     ) throws IOException {

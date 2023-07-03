@@ -12,4 +12,6 @@ public class ResponseMessage {
     public static final String FAIL_UPDATE_MEMBER_INFO = "회원 정보 수정 실패(일치하는 회원 정보 없음)";
     public static final String SUCCESS_DELETE_MEMBER_INFO = "회원 정보 삭제 성공";
     public static final String FAIL_DELETE_MEMBER_INFO = "회원 정보 삭제 실패";
+
+    public static final String SUCCESS_REGISTER_POST = "글 등록 성공";
 }

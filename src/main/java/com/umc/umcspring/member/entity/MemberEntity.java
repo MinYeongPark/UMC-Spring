@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "member_table")
+@Table(name = "member")
 @Getter
 @Setter
 public class MemberEntity {
@@ -16,19 +16,19 @@ public class MemberEntity {
     private Long id;
 
     @Column(unique = true) // unique 제약조건 추가
-    private String memberEmail;
+    private String email;
 
     @Column
-    private String memberPassword;
+    private String password;
 
     @Column
-    private String memberName;
+    private String name;
 
     public static MemberEntity toMemberEntity(MemberRegisterDTO memberRegisterDTO) {
         MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setMemberEmail(memberRegisterDTO.getMemberEmail());
-        memberEntity.setMemberPassword(memberRegisterDTO.getMemberPassword());
-        memberEntity.setMemberName(memberRegisterDTO.getMemberName());
+        memberEntity.setEmail(memberRegisterDTO.getMemberEmail());
+        memberEntity.setPassword(memberRegisterDTO.getMemberPassword());
+        memberEntity.setName(memberRegisterDTO.getMemberName());
         return memberEntity;
     }
 

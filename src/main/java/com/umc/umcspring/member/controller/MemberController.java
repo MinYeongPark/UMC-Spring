@@ -48,7 +48,7 @@ public class MemberController {
             @RequestHeader Long id
     ) throws IOException {
         MemberEntity memberEntity = memberService.getMemberInfo(id);
-        MemberInfoDTO memberInfoDTO = new MemberInfoDTO(memberEntity.getId(), memberEntity.getMemberEmail(), memberEntity.getMemberName());
+        MemberInfoDTO memberInfoDTO = new MemberInfoDTO(memberEntity.getId(), memberEntity.getEmail(), memberEntity.getName());
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_CHECK_MEMBER_INFO, memberInfoDTO), HttpStatus.OK);
     }
 

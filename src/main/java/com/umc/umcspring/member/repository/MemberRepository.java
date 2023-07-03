@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
     Optional<MemberEntity> findById(Long id);
 
-    MemberEntity findOneByMemberEmailAndMemberPassword(String memberEmail, String memberPassword);
+    MemberEntity findOneByEmailAndPassword(String memberEmail, String memberPassword);
 
     @Override
     void delete(MemberEntity entity);

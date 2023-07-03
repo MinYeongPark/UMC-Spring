@@ -17,9 +17,9 @@ public class MemberService {
     // 회원 가입
     public long save(MemberRegisterDTO memberRegisterDTO) {
         MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setMemberName(memberRegisterDTO.getMemberName());
-        memberEntity.setMemberEmail(memberRegisterDTO.getMemberEmail());
-        memberEntity.setMemberPassword(memberRegisterDTO.getMemberPassword());
+        memberEntity.setName(memberRegisterDTO.getMemberName());
+        memberEntity.setEmail(memberRegisterDTO.getMemberEmail());
+        memberEntity.setPassword(memberRegisterDTO.getMemberPassword());
 
         memberRepository.save(memberEntity);
         return memberEntity.getId();
@@ -32,7 +32,7 @@ public class MemberService {
 
     // 회원 로그인
     public Long login(String email, String password) {
-        MemberEntity findMember = memberRepository.findOneByMemberEmailAndMemberPassword(email, password);
+        MemberEntity findMember = memberRepository.findOneByEmailAndPassword(email, password);
 
         if (findMember != null) {
             return findMember.getId();
@@ -49,9 +49,9 @@ public class MemberService {
             return 0;
 
         MemberEntity memberEntity = oMember.get();
-        memberEntity.setMemberName(memberRegisterDTO.getMemberName());
-        memberEntity.setMemberEmail(memberRegisterDTO.getMemberEmail());
-        memberEntity.setMemberPassword(memberRegisterDTO.getMemberPassword());
+        memberEntity.setName(memberRegisterDTO.getMemberName());
+        memberEntity.setEmail(memberRegisterDTO.getMemberEmail());
+        memberEntity.setPassword(memberRegisterDTO.getMemberPassword());
         memberRepository.save(memberEntity);
         return 1;
     }

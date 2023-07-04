@@ -55,7 +55,7 @@ public class PostController {
     }
 
     // 글 제목 수정
-    @PatchMapping("/{post_id}")
+    @PatchMapping("/{post_id}/title")
     public ResponseEntity updatePostTitle(
             @PathVariable("post_id") Long post_id,
             @RequestParam("title") String title,
@@ -72,7 +72,7 @@ public class PostController {
     @DeleteMapping("/{post_id}/out")
     public ResponseEntity deletePost(
 
-            @RequestHeader("post")
-            )
+
+            @RequestHeader("post"))
 
 }

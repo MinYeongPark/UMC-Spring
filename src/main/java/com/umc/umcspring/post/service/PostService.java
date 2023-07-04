@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,5 +26,10 @@ public class PostService {
 
         postRepository.save(postEntity);
         return postEntity.getPost_id();
+    }
+
+    // 글 상세 조회
+    public PostEntity getPostDetail(Long post_id) {
+        return postRepository.findById(post_id).get();
     }
 }

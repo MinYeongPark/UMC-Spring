@@ -64,4 +64,14 @@ public class PostService {
         postRepository.save(postEntity);
         return 1;
     }
+
+    // 글 삭제
+    public Integer deletePost(Long post_id, Long writer_id) {
+        Optional<PostEntity> post = postRepository.findById(post_id);
+        if (post.isEmpty()) {
+            return -1;
+        }
+        postRepository.delete(post.get());
+        return 1;
+    }
 }

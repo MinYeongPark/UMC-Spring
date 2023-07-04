@@ -71,8 +71,13 @@ public class PostController {
     // 글 삭제
     @DeleteMapping("/{post_id}/out")
     public ResponseEntity deletePost(
-
-
-            @RequestHeader("post"))
-
+            @PathVariable("post_id") Long post_id,
+            @RequestHeader Long writer_id
+    ) throws IOException {
+        Integer result = postService.deletePost(post_id, writer_id);
+        if (result > 0) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_DELETE_POST, null), HttpStatus.OK);
+        }
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_DELETE_POST, null), HttpStatus.OK);
+    }
 }

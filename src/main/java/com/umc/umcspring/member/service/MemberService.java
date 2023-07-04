@@ -65,11 +65,4 @@ public class MemberService {
         memberRepository.delete(member.get());
         return 1;
     }
-
-//    public Long update(Long id, MemberDTO memberDTO) throws SQLException {
-//        MemberEntity memberEntity = memberRepository.findById(id)
-//                .orElseThrow(() -> new NullPointerException("해당 회원이 존재하지 않습니다."));
-//        memberEntity.update(memberDTO);
-//        return id;
-//    }
 }

@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/post")
@@ -32,9 +34,23 @@ public class PostController {
     @GetMapping("/{post_id}")
     public ResponseEntity getPostDetail(
             @PathVariable("post_id") Long post_id
-    ) {
+    ) throws IOException {
         PostEntity postEntity = postService.getPostDetail(post_id);
         PostInfoDTO postInfoDTO = new PostInfoDTO(postEntity.getTitle(), postEntity.getContent(), postEntity.getRegister_time());
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_CHECK_POST_INFO, postInfoDTO), HttpStatus.OK);
+    }
+
+    // 글 수정
+    @PutMapping("/{post_id}")
+    public ResponseEntity updatePostDetail(
+            @PathVariable("post_id") Long post_id,
+            @RequestBody PostRegisterDTO postRegisterDTO,
+            @RequestHeader Long writer_id
+    ) throws IOException {
+        int result = postService.update(post_id, postRegisterDTO, writer_id);
+        if (result > 0) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_UPDATE_POST_DETAIL, null), HttpStatus.OK);
+        }
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_UPDATE_POST_DETAIL, null), HttpStatus.OK);
     }
 }

@@ -15,4 +15,6 @@ public class ResponseMessage {
 
     public static final String SUCCESS_REGISTER_POST = "글 등록 성공";
     public static final String SUCCESS_CHECK_POST_INFO = "글 상세 조회 성공";
+    public static final String SUCCESS_UPDATE_POST_DETAIL = "글 수정 성공";
+    public static final String FAIL_UPDATE_POST_DETAIL = "글 수정 실패(일치하는 글 없음)";
 }

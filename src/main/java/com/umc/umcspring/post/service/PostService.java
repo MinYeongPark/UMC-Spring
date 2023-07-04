@@ -4,8 +4,11 @@ import com.umc.umcspring.post.dto.PostRegisterDTO;
 import com.umc.umcspring.post.entity.PostEntity;
 import com.umc.umcspring.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -45,6 +48,19 @@ public class PostService {
         postEntity.setTitle(postRegisterDTO.getTitle());
         postEntity.setContent(postRegisterDTO.getContent());
         // 등록 시간은 수정 안 하는 것으로 진행
+        postRepository.save(postEntity);
+        return 1;
+    }
+
+    // 글 제목 수정
+    @Transactional
+    public int updateTitle(Long post_id, String title, Long writer_id) {
+        Optional<PostEntity> oPost = postRepository.findById(post_id);
+        if (!oPost.isPresent())
+            return 0;
+
+        PostEntity postEntity = oPost.get();
+        postEntity.setTitle(title);
         postRepository.save(postEntity);
         return 1;
     }

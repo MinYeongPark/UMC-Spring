@@ -38,7 +38,7 @@ public class MemberController {
         if ((memberId = memberService.login(email, password)) != null) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_LOGIN_MEMBER, memberId), HttpStatus.OK);
         } else {
-            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_LOGIN_MEMBER, null), HttpStatus.OK);
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_LOGIN_MEMBER, null), HttpStatus.OK);
         }
     }
 
@@ -62,7 +62,7 @@ public class MemberController {
         if (result > 0) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_UPDATE_MEMBER_INFO, null), HttpStatus.OK);
         }
-        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_UPDATE_MEMBER_INFO, null), HttpStatus.OK);
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_UPDATE_MEMBER_INFO, null), HttpStatus.OK);
     }
 
     // 회원 정보 삭제
@@ -74,6 +74,6 @@ public class MemberController {
         if (result > 0) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_DELETE_MEMBER_INFO, null), HttpStatus.OK);
         }
-        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_DELETE_MEMBER_INFO, null), HttpStatus.OK);
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_DELETE_MEMBER_INFO, null), HttpStatus.OK);
     }
 }

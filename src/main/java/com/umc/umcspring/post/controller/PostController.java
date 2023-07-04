@@ -51,6 +51,28 @@ public class PostController {
         if (result > 0) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_UPDATE_POST_DETAIL, null), HttpStatus.OK);
         }
-        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.FAIL_UPDATE_POST_DETAIL, null), HttpStatus.OK);
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_UPDATE_POST_DETAIL, null), HttpStatus.OK);
     }
+
+    // 글 제목 수정
+    @PatchMapping("/{post_id}")
+    public ResponseEntity updatePostTitle(
+            @PathVariable("post_id") Long post_id,
+            @RequestParam("title") String title,
+            @RequestHeader Long writer_id
+    ) throws IOException {
+        int result = postService.updateTitle(post_id, title, writer_id);
+        if (result > 0) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_UPDATE_POST_TITLE, null), HttpStatus.OK);
+        }
+        return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_UPDATE_POST_TITLE, null), HttpStatus.OK);
+    }
+
+    // 글 삭제
+    @DeleteMapping("/{post_id}/out")
+    public ResponseEntity deletePost(
+
+            @RequestHeader("post")
+            )
+
 }

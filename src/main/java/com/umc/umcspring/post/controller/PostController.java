@@ -50,6 +50,8 @@ public class PostController {
         int result = postService.update(post_id, postRegisterDTO, writer_id);
         if (result > 0) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_UPDATE_POST_DETAIL, null), HttpStatus.OK);
+        } else if (result == -1) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_WRONG_MEMBER, null), HttpStatus.OK);
         }
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_UPDATE_POST_DETAIL, null), HttpStatus.OK);
     }
@@ -64,6 +66,8 @@ public class PostController {
         int result = postService.updateTitle(post_id, title, writer_id);
         if (result > 0) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_UPDATE_POST_TITLE, null), HttpStatus.OK);
+        } else if (result == -1) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_WRONG_MEMBER, null), HttpStatus.OK);
         }
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_UPDATE_POST_TITLE, null), HttpStatus.OK);
     }
@@ -77,6 +81,8 @@ public class PostController {
         Integer result = postService.deletePost(post_id, writer_id);
         if (result > 0) {
             return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.SUCCESS, ResponseMessage.SUCCESS_DELETE_POST, null), HttpStatus.OK);
+        } else if (result == -1) {
+            return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_WRONG_MEMBER, null), HttpStatus.OK);
         }
         return new ResponseEntity(ResponseFormat.responseFormat(StatusCode.FAIL, ResponseMessage.FAIL_DELETE_POST, null), HttpStatus.OK);
     }

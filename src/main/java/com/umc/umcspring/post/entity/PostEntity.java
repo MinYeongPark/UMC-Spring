@@ -1,10 +1,10 @@
 package com.umc.umcspring.post.entity;
 
-import com.umc.umcspring.member.dto.MemberRegisterDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 @Entity
@@ -16,6 +16,7 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
     private Long post_id;
 
+    @Size(min=2)
     @Column(nullable = false)
     private String title;
 

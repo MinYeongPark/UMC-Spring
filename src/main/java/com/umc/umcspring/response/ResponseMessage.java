@@ -21,4 +21,6 @@ public class ResponseMessage {
     public static final String FAIL_UPDATE_POST_TITLE = "글 제목 수정 실패";
     public static final String SUCCESS_DELETE_POST = "글 삭제 성공";
     public static final String FAIL_DELETE_POST = "글 삭제 실패";
+
+    public static final String FAIL_WRONG_MEMBER = "실패 (잘못된 사용자)";
 }

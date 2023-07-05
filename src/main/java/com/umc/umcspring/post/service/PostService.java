@@ -44,6 +44,10 @@ public class PostService {
         if (!oPost.isPresent())
             return 0;
 
+        if (!writer_id.equals(oPost.get().getWriter_id())) {
+            return -1;
+        }
+
         PostEntity postEntity = oPost.get();
         postEntity.setTitle(postRegisterDTO.getTitle());
         postEntity.setContent(postRegisterDTO.getContent());
@@ -59,6 +63,10 @@ public class PostService {
         if (!oPost.isPresent())
             return 0;
 
+        if (!writer_id.equals(oPost.get().getWriter_id())) {
+            return -1;
+        }
+
         PostEntity postEntity = oPost.get();
         postEntity.setTitle(title);
         postRepository.save(postEntity);
@@ -69,8 +77,13 @@ public class PostService {
     public Integer deletePost(Long post_id, Long writer_id) {
         Optional<PostEntity> post = postRepository.findById(post_id);
         if (post.isEmpty()) {
+            return 0;
+        }
+
+        if (!writer_id.equals(post.get().getWriter_id())) {
             return -1;
         }
+
         postRepository.delete(post.get());
         return 1;
     }
